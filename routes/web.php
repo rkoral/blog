@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('front.homepage');
-});
+Route::get('/', [App\Http\Controllers\Front\HomepageController::class, 'index'])->name('homepage');
+Route::get('/{category}/{slug}', [App\Http\Controllers\Front\HomepageController::class, 'post'])->name('post');

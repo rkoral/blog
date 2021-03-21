@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Pagination\Paginator;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\Front\HomepageController::class, 'index'])->name('homepage');
+Route::get('/sayfa', [App\Http\Controllers\Front\HomepageController::class, 'index']);
+
 Route::get('/kategori/{category}', [App\Http\Controllers\Front\HomepageController::class, 'category'])->name('category');
 Route::get('/{category}/{slug}', [App\Http\Controllers\Front\HomepageController::class, 'post'])->name('post');

@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 // Models
 use App\Models\Category;
 use App\Models\Article;
@@ -13,7 +14,8 @@ class HomepageController extends Controller
 {
 	public function index(){
 
-		$data['articles']=Article::OrderBy('title','asc')->get();
+		$data['articles']=Article::OrderBy('title','asc')->simplePaginate(2);
+		$data['articles']->withPath('/sayfa');
 		$data['categories']=Category::OrderBy('name','asc')->get();
     	//dd(Article::with('getCategory')->find(1));
 
@@ -34,7 +36,8 @@ class HomepageController extends Controller
 
 		$category=Category::whereSlug($slug)->first() ?? abort(403, 'Böyle bir yazı bulunamadı');
 		$data['category']=$category;
-		$data['articles']=Article::where('category_id', $category->id)->OrderBy('title','asc')->get();
+		$data['articles']=Article::where('category_id', $category->id)->OrderBy('title','asc')->simplePaginate(1);
+		
 		$data['categories']=Category::OrderBy('name','asc')->get();
 		return view('front.category', $data);
 	}

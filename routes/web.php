@@ -2,14 +2,28 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Pagination\Paginator;
+
+
+
+
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Backend Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/admin/panel' , [App\Http\Controllers\Back\DashboardController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/login' , [App\Http\Controllers\Back\AuthController::class, 'login'])->name('admin.login');
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Front Routes
+|--------------------------------------------------------------------------
+|
 |
 */
 
@@ -21,3 +35,5 @@ Route::get('/kategori/{category}', [App\Http\Controllers\Front\HomepageControlle
 Route::get('/{category}/{slug}', [App\Http\Controllers\Front\HomepageController::class, 'post'])->name('post');
 Route::get('/{sayfa}', [App\Http\Controllers\Front\HomepageController::class, 'page'])->name('page');
 Route::get('/iletisim', [App\Http\Controllers\Front\HomepageController::class, 'contact'])->name('contact');
+
+

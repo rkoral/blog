@@ -13,9 +13,24 @@ use Illuminate\Pagination\Paginator;
 |
 |
 */
+//ayrı grup yaptık çünkü login ve isAdmin middleware'i arasında sonsuz döngü oldu hata verdi. 
+Route::prefix('admin')->name('admin.')->middleware('isLogin')->group(function(){
+	Route::get('/login' , [App\Http\Controllers\Back\AuthController::class, 'login'])->name('login');
+	Route::post('/login' , [App\Http\Controllers\Back\AuthController::class, 'loginPost'])->name('login.post');
+});
 
-Route::get('/admin/panel' , [App\Http\Controllers\Back\DashboardController::class, 'index'])->name('admin.dashboard');
-Route::get('/admin/login' , [App\Http\Controllers\Back\AuthController::class, 'login'])->name('admin.login');
+
+Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function(){
+	Route::get('/panel' , [App\Http\Controllers\Back\DashboardController::class, 'index'])->name('dashboard');
+
+	Route::get('/logout', [App\Http\Controllers\Back\AuthController::class, 'logout'])->name('logout');
+
+
+
+
+});
+
+
 
 
 

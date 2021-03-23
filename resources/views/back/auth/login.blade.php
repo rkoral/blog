@@ -1,5 +1,4 @@
-
-@yield('title', 'login')
+ 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>@yield('title')</title>
+    <title></title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('back/')}}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -44,25 +43,34 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Hoş Geldin!</h1>
                                     </div>
-                                    <form class="user">
+                                    @if($errors->any())
+                                    <div class="alert alert-danger">
+                                        {{$errors->first()}}
+                                        
+                                    </div>
+
+                                    @endif
+
+                                    <form method="post" action="{{route('admin.login.post')}}" class="user">
+                                        @csrf
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="email" name="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Email Adresiniz">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
+                                            <input type="password" name="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Şifreniz">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <input type="checkbox" name="remember" class="custom-control-input" id="customCheck">
                                                 <label class="custom-control-label" for="customCheck">Beni Hatırla!</label>
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Giriş
-                                        </a>
+                                        </button>
                                         <hr>
                                     
                                     </form>

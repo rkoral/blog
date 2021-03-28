@@ -10,5 +10,8 @@ class Article extends Model
 {
     public function getCategory(){
     	return $this->belongsTo(Category::class, 'category_id','id');
+
     }
+
 }
+

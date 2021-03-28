@@ -10,7 +10,7 @@
 			@foreach($categories as $category)
 			
 				<a href="{{route('category', $category->slug)}}" class="list-group-item list-group-item-action @if(Request::segment(2)==$category->slug) active @endif">{{$category->name}} 
-					<span class="badge badge-primary float-right">{{$category->articleCount()}}</span>
+					<span class="badge badge-primary float-right">{{$category->articles->count()}}</span>
 				</a>
 
 

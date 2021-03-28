@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
-
-use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\loginRequest;
 
 
 
@@ -17,7 +15,7 @@ class AuthController extends Controller
 		return view('back.auth.login');
 	}
 
-	public function loginPost(Request $request){
+	public function loginPost(loginRequest $request){
 
 		if(Auth::attempt(['email'=>$request->email, 'password'=>$request->password], $request->remember)) {
 

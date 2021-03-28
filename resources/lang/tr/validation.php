@@ -158,6 +158,7 @@ return [
         'name' => 'Ad Soyad',
         'message'=>'Mesaj',
         'email'=>'Email',
+        'password' => 'Şifre',
 
     ],
 

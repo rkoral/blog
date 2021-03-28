@@ -1,3 +1,4 @@
+
 @if(count($articles)>0)
 @foreach($articles as $article)
 <div class="post-preview">

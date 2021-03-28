@@ -20,6 +20,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
 	Route::post('/login' , [App\Http\Controllers\Back\AuthController::class, 'loginPost'])->name('login.post')->withoutMiddleware('auth');
 	Route::get('/logout', [App\Http\Controllers\Back\AuthController::class, 'logout'])->name('logout');
 	Route::get('/panel' , [App\Http\Controllers\Back\DashboardController::class, 'index'])->name('dashboard');
+	Route::resource('/makaleler' , App\Http\Controllers\Back\ArticleController::class);
 });
 
 

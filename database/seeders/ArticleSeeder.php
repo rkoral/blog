@@ -28,13 +28,7 @@ class ArticleSeeder extends Seeder
     			'slug'=>Str::slug($title,'-'),
     			'created_at'=>now(),
     			'updated_at'=>now(),
-
-
-
-
-
-
-
+                
     		]);
     	}
 

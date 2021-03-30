@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Back;
 
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\articleStoreRequest;
 use App\Models\Article;
+use App\Models\Category;
+
 
 class ArticleController extends Controller
 {
@@ -15,7 +19,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $data['articles']=Article::with('getCategory')->orderBy('created_at', 'ASC')->get();
+        $data['articles']=Article::with('getCategory')->orderBy('created_at', 'DESC')->get();
         return view('back.articles.index', $data);
     }
 
@@ -26,7 +30,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        $data['categories']=Category::with('articles')->get();
+        return view('back.articles.create', $data);
     }
 
     /**
@@ -35,9 +40,33 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(articleStoreRequest $request)
     {
-        //
+        
+
+        
+            $article=new Article;
+        $article->title=$request->title;
+        $article->category_id=$request->category;
+        $article->content=$request->content;
+        $article->slug=Str::slug($request->title, '-');
+
+
+        if ($request->hasFile('image')) {
+            $fileName = time().'_'.$request->image->getClientOriginalName();
+            $filePath = $request->file('image')->storeAs('uploads', $fileName, 'public');
+            $article->image = time().'_'.$request->image->getClientOriginalName();           
+        }
+/*
+        if($request->hasFile('image')){ 
+           $imageName = $request->image->extension(); //jpg
+           $request->image->move(public_path('uploads'), $imageName);
+           $article->image='uploads/'.$imageName;
+        } 
+        */
+        $article->save();
+        toastr()->success('Makaleniz oluşturuldu!');
+        return redirect()->route('admin.makaleler.index');
     }
 
     /**

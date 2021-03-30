@@ -1,5 +1,5 @@
     </div>
-</div>
+  </div>
   <!-- Footer -->
 
   <footer>
@@ -44,7 +44,7 @@
 
   <!-- Custom scripts for this template -->
   <script src="{{asset('front/')}}/js/clean-blog.min.js"></script>
-
+ 
 </body>
 
 </html>

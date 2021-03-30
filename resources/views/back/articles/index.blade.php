@@ -25,7 +25,7 @@
 
                                         <tr>
                                             <td>
-                                            	<img src="{{$article->image}}" width="50">
+                                            	<img src="{{ asset('uploads/'.$article->image)}}" width="50">
                                             </td>
                                             <td>{{$article->title}}</td>
                                             <td>{{$article->getCategory->name}}</td>                                            

@@ -159,6 +159,7 @@ return [
         'message'=>'Mesaj',
         'email'=>'Email',
         'password' => 'Şifre',
+        'image' => 'Fotoğraf',
 
     ],
 

@@ -25,7 +25,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::resourceVerbs([
-          'create' => 'olustur'
+          'create' => 'olustur',
+          'edit' => 'guncelle',
       ]); 
     }
 }

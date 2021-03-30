@@ -21,8 +21,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
 	Route::get('/logout', [App\Http\Controllers\Back\AuthController::class, 'logout'])->name('logout');
 	Route::get('/panel' , [App\Http\Controllers\Back\DashboardController::class, 'index'])->name('dashboard');
 	Route::resource('/makaleler' , App\Http\Controllers\Back\ArticleController::class);
-	
-
+	Route::get('/switch', [App\Http\Controllers\Back\ArticleController::class, 'switch'])->name('switch');
 });
 
 
